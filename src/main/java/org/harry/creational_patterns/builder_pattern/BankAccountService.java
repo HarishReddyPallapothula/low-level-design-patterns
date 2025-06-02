@@ -1,17 +1,27 @@
 package org.harry.creational_patterns.builder_pattern;
 
 public class BankAccountService {
-    public void openAccount(String accountNumber, String accountHolderName) {
-        // didn't add other parameters as Im lazy just imagine it coming from controller or any other place
-        BankAccount account = new BankAccount.Builder(accountNumber, accountHolderName)
-                .email("hari.rdy@gmail.com")
-                .phoneNumber("1234567890")
-                .accountType("SAVINGS")
-                .interestRate(3.5)
-                .notificationsEnabled(true)
-                .build();
+    public BankAccount openAccount(String accountNumber, String accountHolderName, String type, String emailOrRate) {
+        BankAccountBuilder builder = new StandardBankAccountBuilder();
+        AccountDirector director = new AccountDirector(builder);
 
-        System.out.println("Account created for: " + account.getAccountHolderName() + " in Builder pattern");
+        switch (type.toUpperCase()) {
+            case "SAVINGS":
+                return director.constructSavingsAccount(accountNumber, accountHolderName, emailOrRate);
+            case "CURRENT":
+                return director.constructBusinessAccount(accountNumber, accountHolderName, emailOrRate);
+            case "LOAN":
+                double interestRate;
+                try {
+                    interestRate = Double.parseDouble(emailOrRate);
+                } catch (NumberFormatException e) {
+                    throw new IllegalArgumentException("Loan account requires a valid interest rate.");
+                }
+                return director.constructLoanAccount(accountNumber, accountHolderName, interestRate);
+            default:
+                throw new IllegalArgumentException("Unsupported account type: " + type);
+        }
+
     }
 }
 
