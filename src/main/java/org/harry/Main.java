@@ -1,6 +1,7 @@
 package org.harry;
 
 import org.harry.creational_patterns.abstract_factory_pattern.AbstractFactoryPatternMain;
+import org.harry.creational_patterns.builder_pattern.BuilderPatternMain;
 import org.harry.creational_patterns.factory_method.FactoryMethodMain;
 
 public class Main {
@@ -10,6 +11,9 @@ public class Main {
 
         //AbstractFactory Pattern
         AbstractFactoryPatternMain.implAFP();
+
+        //builder pattern
+        BuilderPatternMain.builderPatternMain();
 
     }
 }
