@@ -4,6 +4,7 @@ import org.harry.creational_patterns.abstract_factory_pattern.AbstractFactoryPat
 import org.harry.creational_patterns.builder_pattern.BuilderPatternMain;
 import org.harry.creational_patterns.factory_method.FactoryMethodMain;
 import org.harry.creational_patterns.prototype_pattern.PrototypePatternMain;
+import org.harry.creational_patterns.singleton_pattern.SingletonPatternMain;
 
 /*The problem it solves.
 Say you have an object, and you want to create an exact copy of it. How would you do it?
@@ -42,5 +43,7 @@ public class Main {
         //prototype pattern
         PrototypePatternMain.prototypePatternMain();
 
+        //Singleton Pattern
+        SingletonPatternMain.singletonPatternMain();
     }
 }
